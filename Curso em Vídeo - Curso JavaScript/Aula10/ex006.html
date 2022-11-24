@@ -21,5 +21,27 @@
     <div id="area">
         Interaja...
     </div>
+
+    <script>
+
+        var a = window.document.getElementById('area')
+
+        a.addEventListener('click', clicar)
+        a.addEventListener('mouseenter', enter)
+        a.addEventListener('mouseout', sair)
+        function clicar() {
+            a.innerText = 'Clicou!'
+        }
+
+        function enter() {
+            var a = document.getElementById('area')
+            a.innerText = 'Olha o mouse!'
+        }
+
+        function sair() {
+            var a = document.getElementById('area')
+            a.innerText = 'Interaja...'
+        }
+    </script>
 </body>
 </html>
