@@ -6,3 +6,38 @@
     --bg-color: #453C67;
     --primary-color: #F2F7A1;
 }
+
+body {
+    background: var(--bg-color);
+    color: var(--primary-color);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin: 0;
+    font-family: var(--font-family);
+}
+
+h1 {
+    font-size: 4em;
+}
+
+h3 {
+    font-size: 2em;
+    margin-top: 20px;
+}
+
+.mensagem {
+    font-size: 1.5em;
+    margin-top: 40px;
+}
+
+.box {
+    display: inline-block;
+    border: 2px solid var(--primary-color);
+    padding: 10px;
+    font-size: 4em;
+    margin: 30px 0 30px 0;
+}
