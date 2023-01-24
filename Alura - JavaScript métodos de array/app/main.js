@@ -16,14 +16,13 @@ function exibirOsLivrosNaTela(listaDeLivros){
     listaDeLivros.forEach(evento => {
         elementoParaInserirLivros.innerHTML += `
         <div class="livro">
-            <img class="livro__imagens indisponivel" src="imagens/O-Retorno-do-cangaceiro-JavaScript.png"
-            alt="Capa do livro O Retorno do Cangaceiro JavaScript+" />
+            <img class="livro__imagens" src="${evento.imagem}"
+            alt="${evento.alt}" />
             <h2 class="livro__titulo">
-                Cangaceiro JavaScript +:
-                O Retorno do cangaceiro JavaScript
+            ${evento.titulo}
             </h2>
             <p class="livro__descricao">${evento.autor}</p>
-            <p class="livro__preco" id="preco">${evento.preco}</p>
+            <p class="livro__preco" id="preco">R$ ${evento.preco}</p>
             <div class="tags">
                 <span class="tag">${evento.categoria}</span>
             </div>
