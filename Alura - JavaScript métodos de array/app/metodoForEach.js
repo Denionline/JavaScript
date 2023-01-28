@@ -3,9 +3,11 @@ const elementoParaInserirLivros = document.querySelector('#livros')
 function exibirOsLivrosNaTela(listaDeLivros){
     elementoParaInserirLivros.innerHTML = ''
     listaDeLivros.forEach(evento => {
+        // let disponibilidade = verificaDisponibilidade(evento)
+        let disponibilidade = evento.quantidade > 0? '' : 'indisponivel'
         elementoParaInserirLivros.innerHTML += `
         <div class="livro">
-            <img class="livro__imagens" src="${evento.imagem}"
+            <img class="livro__imagens ${disponibilidade}" src="${evento.imagem}"
             alt="${evento.alt}" />
             <h2 class="livro__titulo">
             ${evento.titulo}
@@ -19,3 +21,11 @@ function exibirOsLivrosNaTela(listaDeLivros){
         `        
     });
 }
+
+// function verificaDisponibilidade(livro){
+//     if (livro.quantidade > 0){
+//         return disponibilidade = ''
+//     }else{
+//         return disponibilidade = 'indisponivel'
+//     }
+// }
