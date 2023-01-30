@@ -1,4 +1,4 @@
-var livros =[]
+var livros = []
 const endpointDaAPI = 'https://guilhermeonrails.github.io/casadocodigo/livros.json'
 
 getBuscarLivrosDaAPI()
