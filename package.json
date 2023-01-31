@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/Denionline/JavaScript/issues"
   },
-  "homepage": "https://github.com/Denionline/JavaScript#readme"
+  "homepage": "https://github.com/Denionline/JavaScript#readme",
+  "dependencies": {
+    "json-server": "^0.17.1"
+  }
 }
