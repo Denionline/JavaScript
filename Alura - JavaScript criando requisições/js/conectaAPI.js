@@ -33,6 +33,7 @@ async function criaVideo(titulo, descricao, url, imagem){
 
 export const conectaAPI = {
     listaDeVideos,
-    criaVideo
+    criaVideo,
+    buscaVideo
 }
 
