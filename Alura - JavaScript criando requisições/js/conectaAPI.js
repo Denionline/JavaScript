@@ -5,6 +5,13 @@ async function listaDeVideos () {
     return conexaoConvertida
 }
 
+async function buscaVideo(termoDeBusca){
+    const conexao = await fetch(`http://localhost:3000/videos?q=${termoDeBusca}`)
+    const conexaoConvertida = await conexao.json()
+    
+    return conexaoConvertida
+}
+
 async function criaVideo(titulo, descricao, url, imagem){
     const conexao = await fetch('http://localhost:3000/videos', {
         method: "POST",
