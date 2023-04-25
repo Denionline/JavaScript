@@ -11,13 +11,13 @@ formulario.addEventListener('submit', (e) => {
         "email": e.target.elements["email"].value,
         "rg": e.target.elements["rg"].value,
         "cpf": e.target.elements["cpf"].value,
-        "aniversario": e.target.elements["aniversario"].value
-    };
+        "aniversario": e.target.elements["aniversario"].value,
+    }
 
     localStorage.setItem('cadastro', JSON.stringify(listaRespostas));
 
     window.location.href = './abrir-conta-form-2.html';
-});
+})
 
 camposDoFormulario.forEach((campo) => {
     campo.addEventListener('blur', () => verificaCampo(campo))
@@ -30,7 +30,7 @@ const tiposDeErro = [
     'patternMismatch',
     'tooShort',
     'customError'
-];
+]
 
 const mensagens = {
     nome: {
@@ -49,10 +49,10 @@ const mensagens = {
         tooShort: "O campo de RG não tem caractéres suficientes."
     },
     cpf: {
-        // valueMissing: 'O campo de CPF não pode estar vazio.',
-        // patternMismatch: "Por favor, preencha um CPF válido.",
-        // customError: "O CPF digitado não existe.",
-        // tooShort: "O campo de CPF não tem caractéres suficientes."
+        valueMissing: 'O campo de CPF não pode estar vazio.',
+        patternMismatch: "Por favor, preencha um CPF válido.",
+        customError: "O CPF digitado não existe.",
+        tooShort: "O campo de CPF não tem caractéres suficientes."
     },
     aniversario: {
         valueMissing: 'O campo de data de nascimento não pode estar vazio.',
@@ -66,21 +66,17 @@ const mensagens = {
 function verificaCampo(campo){
     let mensagem = "";
     campo.setCustomValidity('');
-
-    if(campo.name == 'cpf' && campo.value.length >= 11 && campo.value.length <= 14){
+    if (campo.name == 'cpf' && campo.value.length >= 11) {
         ehUmCPF(campo);
-    };
-
-    if(campo.name == 'aniversario' || campo.name != ''){
+    }
+    if (campo.name == 'aniversario' && campo.name != ''){
         ehMaiorDeIdade(campo);
-    };
-
+    }
     tiposDeErro.forEach(erro => {
         if(campo.validity[erro]){
             mensagem = mensagens[campo.name][erro];
         }
     })
-
     const mensagemErro = campo.parentNode.querySelector('.mensagem-erro');
     const validadorDeInput = campo.checkValidity();
 
