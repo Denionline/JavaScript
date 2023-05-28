@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste</title>
+    <style>
+         body{
+            display: block;
+            width: 50%;
+            margin: auto;
+         }
+         h1{
+            text-align: center;
+         }
+         div{
+            text-align: center;
+         }
+         .item{
+            display: flex;
+            margin: 10px;
+            border: 1px solid black;
+         }
+         .item > input{
+            cursor: pointer;
+         }
+    </style>
+</head>
+<body>
+    <h1>Cadastro item</h1>
+    <div class="cadastro">
+        <input type="text" id="campo">
+        <button id="btn">Cadastrar</button>
+        <button id="btnD">Excluir</button>
+        <!-- onfocus="this.value=''" -->
+    </div>
+
+    <div class="itens">
+
+    </div>
+
+    <script>
+        const listaDeItens = document.querySelector('.itens');
+        const botao = document.querySelector('#btn')
+        const campo = document.querySelector('#campo')
+        const botaoDelete = document.querySelector('#btnD')
+
+        botaoDelete.addEventListener('click', () => {
+            deleteItem()
+        })
+        botao.addEventListener('click', cadastroItem)
+        campo.addEventListener('keypress', (e) => {
+            if(e.key === 'Enter'){
+                cadastroItem()
+            }
+        })
+        
+        // console.log(listaDeItens)
+        
+        function cadastroItem(){
+            let item = document.createElement('div');
+            let checkbox = document.createElement('input');
+            let nome = document.createElement('span');
+            nome.innerText = campo.value;
+            checkbox.type = 'checkbox'
+            item.classList.add('item');
+            listaDeItens.appendChild(item);
+            item.appendChild(checkbox);
+            item.appendChild(nome);
+            campo.value = '';
+            console.log(item)
+        }
+
+        function deleteItem(){
+
+            for(i=0;i<listaDeItens.children.length;i++){
+                if(listaDeItens.children[i].children[0].checked === true){
+                    listaDeItens.removeChild(listaDeItens.children[i]) 
+                }
+            }
+        }
+
+    </script>
+</body>
+</html>
