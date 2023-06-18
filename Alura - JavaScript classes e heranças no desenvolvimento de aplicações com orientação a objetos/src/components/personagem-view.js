@@ -1,9 +1,15 @@
+import { Personagem } from "../modules/personagem.js"
+import { mostrarModal } from "./modal.js"
+
 export class PersonagemView {
     personagens
+    personagensSelecionados
 
     constructor(personagens){
         this.ulPersonagens = document.querySelector('ul#personagens')
         this.personagens = personagens
+        this.personagensSelecionados = []
+        this.escutarEventoDuelo();
     }
 
     render() {
@@ -18,9 +24,9 @@ export class PersonagemView {
         const personagemLI = document.createElement('li')
         personagemLI.classList.add('personagem', personagem.constructor.tipo)
     
-        //const estaSelecionado = this.personagensSelecionados.indexOf(personagem) !== -1 //sintaxe para quando encontra no array
+        const estaSelecionado = this.personagensSelecionados.indexOf(personagem) !== -1 //sintaxe para quando encontra no array
     
-        //if (estaSelecionado) personagemLI.classList.add('selecionado')
+        if (estaSelecionado) personagemLI.classList.add('selecionado')
     
         personagemLI.innerHTML =
     
@@ -56,7 +62,7 @@ export class PersonagemView {
         </div>
         `
     
-        /*const containerLevel = personagemLI.querySelector('.level')
+        const containerLevel = personagemLI.querySelector('.level')
         containerLevel.onclick = (evt) => {
             evt.stopPropagation()
     
@@ -65,10 +71,10 @@ export class PersonagemView {
             if (evt.target.classList.contains('aumentar-level')) personagem.aumentarLevel()
     
             this.render()
-        }*/
+        }
     
     
-        /*personagemLI.onclick = () => {
+        personagemLI.onclick = () => {
             const jaTem2Selecionados = this.personagensSelecionados.length === 2
             if (!jaTem2Selecionados || estaSelecionado) {
                 personagemLI.classList.toggle('selecionado')
@@ -77,13 +83,13 @@ export class PersonagemView {
     
                 this.removeSelecao(personagem)
             }
-        }*/
+        }
     
         return personagemLI
     }
     
     
-    /*adicionaSelecao = (personagem) => {
+    adicionaSelecao = (personagem) => {
         this.personagensSelecionados.push(personagem)
         this.render()
     }
@@ -109,5 +115,5 @@ export class PersonagemView {
     
             this.render()
         })
-    }*/
+    }
 }
