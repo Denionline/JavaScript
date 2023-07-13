@@ -27,5 +27,5 @@ function geraHorario(){
 }
 
 function adicionarDados(grafico, legenda, dados){
-  grafico.
+  grafico.data.labels.push(legenda)
 }
