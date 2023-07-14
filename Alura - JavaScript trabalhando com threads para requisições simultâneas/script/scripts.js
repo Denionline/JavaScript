@@ -1,12 +1,12 @@
-const graficoDolar = document.querySelector('#graficoDolar');
+const graficoEuro = document.querySelector('#graficoEuro');
 
-const grafidoParaDolar = new Chart(graficoDolar, {
+const graficoParaEuro = new Chart(graficoEuro, {
     type: 'line',
     data: {
-      labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      labels: [],
       datasets: [{
-        label: '# of Votes',
-        data: [12, 19, 3, 5, 2, 3],
+        label: 'Euro',
+        data: [],
         borderWidth: 1
       }]
     },
@@ -14,9 +14,12 @@ const grafidoParaDolar = new Chart(graficoDolar, {
   
 setInterval(() => conectaAPI(), 5000);  
 async function conectaAPI(){
-    const conecta = await fetch("https://economia.awesomeapi.com.br/json/last/USD-BRL")
+    const conecta = await fetch("https://economia.awesomeapi.com.br/json/last/EUR-BRL")
     const conectaTraduzido = await conecta.json();
-    console.log(conectaTraduzido)
+    
+    let tempo = geraHorario();
+    let valor = conectaTraduzido.EURBRL.ask;
+    adicionarDados(graficoParaEuro, tempo, valor)
 }
 
 function geraHorario(){
@@ -28,4 +31,8 @@ function geraHorario(){
 
 function adicionarDados(grafico, legenda, dados){
   grafico.data.labels.push(legenda)
+  grafico.data.datasets.forEach(dataSet => {
+    dataSet.data.push(dados)
+  });
+  grafico.update(); 
 }
