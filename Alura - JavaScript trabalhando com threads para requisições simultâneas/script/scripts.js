@@ -1,7 +1,5 @@
 import imprimeCotacao from "./imprimeCotacao.js";
-
 const graficoEuro = document.querySelector('#graficoEuro');
-const segundosParaAtualizacao = 10;//segundos
 
 const graficoParaEuro = new Chart(graficoEuro, {
     type: 'line',
@@ -15,16 +13,6 @@ const graficoParaEuro = new Chart(graficoEuro, {
     },
   });
   
-setInterval(() => conectaAPI(), segundosParaAtualizacao * 1000);  
-async function conectaAPI(){
-    const conecta = await fetch("https://economia.awesomeapi.com.br/json/last/EUR-BRL")
-    const conectaTraduzido = await conecta.json();
-    let tempo = geraHorario();
-    let valor = conectaTraduzido.EURBRL.ask;
-    adicionarDados(graficoParaEuro, tempo, valor)
-    imprimeCotacao("Euro",valor)
-}
-
 function geraHorario(){
   let data = new Date();
   let horario = `${data.getHours()}:${data.getMinutes()}:${data.getSeconds()}`
@@ -39,3 +27,12 @@ function adicionarDados(grafico, legenda, dados){
   });
   grafico.update(); 
 }
+let workerEuro = new Worker('./script/workers/workerEuro.js')
+workerEuro.postMessage('eur')
+
+workerEuro.addEventListener('message', event => {
+  let tempo = geraHorario();
+  let valor = event.data.ask;
+  imprimeCotacao('euro', valor);
+  adicionarDados(graficoParaEuro, tempo, valor); 
+})
